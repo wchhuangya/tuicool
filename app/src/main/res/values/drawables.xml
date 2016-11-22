@@ -1,0 +1,7 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <item name="ic_menu_home" type="drawable">@drawable/left_article</item>
+    <item name="ic_menu_site" type="drawable">@drawable/left_site</item>
+    <item name="ic_menu_topic" type="drawable">@drawable/left_topic</item>
+    <item name="ic_menu_weekly" type="drawable">@drawable/left_weekly</item>
+    <item name="ic_menu_mine" type="drawable">@drawable/left_mine</item>
+</resources>
