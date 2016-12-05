@@ -1,1 +1,1 @@
-include ':app', ':test'
+include ':app', ':library', ':sample', ':exampe_01', ':app_zhihu', ':lib'

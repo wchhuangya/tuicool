@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="toolbar_bg">#389884</color><!-- Toolbar 背景颜色 -->
+    <color name="top_crouton_bg">#45b9a0</color>
 </resources>

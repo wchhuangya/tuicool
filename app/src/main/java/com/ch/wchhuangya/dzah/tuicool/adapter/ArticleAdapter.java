@@ -2,79 +2,89 @@ package com.ch.wchhuangya.dzah.tuicool.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import com.ch.wchhuangya.dzah.tuicool.R;
-import com.ch.wchhuangya.dzah.tuicool.databinding.ArticleItemBinding;
 import com.ch.wchhuangya.dzah.tuicool.model.Article;
+import com.ch.wchhuangya.dzah.tuicool.model.CommonListLoadMore;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by wchya on 2016-11-18 12:00
+ * Created by wchya on 2016-11-23 11:48
  */
 
-public class ArticleAdapter extends BaseAdapter {
+public class ArticleAdapter extends RecyclerView.Adapter<BindingViewHolder> {
 
+    public static final int LOAD_MORE = 1;
+    public static final int LOAD_NORMAL = 2;
+    private LayoutInflater mInflater;
     private List<Article.ArticlesBean> mData = new ArrayList<>();
-    private Context mContext;
+    private boolean loadMore;
+    private CommonListLoadMore mCommonListLoadMore;
 
-    public ArticleAdapter(Context context) {
-        mContext = context;
+    public interface clickInterface {
+        public void onItemClickListener(View view, String data);
     }
 
-    public List<Article.ArticlesBean> getData() {
-        return mData;
+    public boolean canLoadMore() {
+        return loadMore;
     }
 
-    public void setData(List<Article.ArticlesBean> data) {
-        mData = data;
-        notifyDataSetChanged();
+    public void setLoadMore(boolean loadMore) {
+        this.loadMore = loadMore;
+    }
+
+    public void removeFooter() {
+        if (mData.size() > 0) {
+            mData.remove(mData.size() - 1);
+        }
+    }
+
+    public void setData(List<Article.ArticlesBean> data, int oldNums, int newNums) {
+        mData.addAll(oldNums, data);
+        //notifyDataSetChanged();
+        notifyItemRangeInserted(oldNums, newNums);
     }
 
     @Override
-    public int getCount() {
+    public int getItemViewType(int position) {
+        if (mData.size() > 0 && position == mData.size() - 1 && canLoadMore())
+            return LOAD_MORE;
+        else
+            return LOAD_NORMAL;
+    }
+
+    public ArticleAdapter(Context context, CommonListLoadMore commonListLoadMore) {
+        mCommonListLoadMore = commonListLoadMore;
+        mInflater = LayoutInflater.from(context);
+    }
+
+    @Override
+    public BindingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == LOAD_NORMAL)
+            return new BindingViewHolder(DataBindingUtil.inflate(mInflater, R.layout.article_item, parent, false));
+        else
+            return new BindingViewHolder(DataBindingUtil.inflate(mInflater, R.layout.common_listview_footer, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(BindingViewHolder holder, int position) {
+        Article.ArticlesBean article = mData.get(position);
+        /*if (canLoadMore() && mData.size() > 0 && position == mData.size() -1)
+            holder.getBinding().setVariable(BR.tips, mCommonListLoadMore);
+        else {
+            holder.getBinding().setVariable(BR.article, article);
+            holder.getBinding().executePendingBindings();
+        }*/
+    }
+
+    @Override
+    public int getItemCount() {
         return mData.size();
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder;
-        if (view == null) {
-            view = View.inflate(mContext, R.layout.article_item, null);
-            holder = new ViewHolder(view);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
-        }
-        holder.setData(mData.get(i));
-
-        return view;
-    }
-
-    class ViewHolder {
-
-        private final ArticleItemBinding mBind;
-
-        public ViewHolder(View view) {
-            mBind = DataBindingUtil.bind(view);
-        }
-
-        public void setData(Article.ArticlesBean articlesBean) {
-            mBind.setArticle(articlesBean);
-        }
     }
 }

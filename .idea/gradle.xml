@@ -10,7 +10,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/app_zhihu" />
+            <option value="$PROJECT_DIR$/exampe_01" />
+            <option value="$PROJECT_DIR$/lib" />
+            <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/sample" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

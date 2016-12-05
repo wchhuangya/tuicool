@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="commonListview"
+            type="com.ch.wchhuangya.dzah.tuicool.model.CommonList"/>
+    </data>
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+            android:id="@+id/common_pb"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="@{commonListview.pbShow ? View.VISIBLE : View.GONE}"
+            app:cpb_color="#FFee44"
+            app:cpb_colors="@array/my_color"
+            app:cpb_max_sweep_angle="300"
+            app:cpb_min_sweep_angle="10"
+            app:cpb_rotation_speed="1.0"
+            app:cpb_stroke_width="4dp"
+            app:cpb_sweep_speed="1.0"
+            />
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/common_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/common_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:listSelector="@android:color/transparent"
+                android:orientation="vertical"
+                android:visibility="@{commonListview.listviewShow ? View.VISIBLE : View.GONE}"
+                />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <ImageView
+            android:id="@+id/common_nodata_iv"
+            android:visibility="@{commonListview.ivShow ? View.VISIBLE : View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/ic_launcher"
+            android:scaleType="center"/>
+
+        <FrameLayout
+            android:id="@+id/common_tips_fl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+</layout>

@@ -5,7 +5,7 @@
         <import type="android.view.View"/>
         <variable
             name="commonListview"
-            type="com.ch.wchhuangya.dzah.tuicool.model.CommonListView"/>
+            type="com.ch.wchhuangya.dzah.tuicool.model.CommonList"/>
     </data>
 
     <FrameLayout

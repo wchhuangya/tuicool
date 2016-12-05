@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/wchya/project/android/personal/TC/app_zhihu/build/intermediates/res/merged/debug/menu/main.xml",
+        "source": "/Users/wchya/project/android/personal/TC/app_zhihu/src/main/res/menu/main.xml"
+    },
+    {
+        "merged": "/Users/wchya/project/android/personal/TC/app_zhihu/build/intermediates/res/merged/debug/menu/contextual_news_list.xml",
+        "source": "/Users/wchya/project/android/personal/TC/app_zhihu/src/main/res/menu/contextual_news_list.xml"
+    }
+]
