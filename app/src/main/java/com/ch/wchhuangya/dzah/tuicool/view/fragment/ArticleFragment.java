@@ -34,6 +34,7 @@ public class ArticleFragment extends Fragment {
         ArticleListViewVM alvVM = new ArticleListViewVM(this);
         binding.setRv(alvVM);
         binding.articleFragmentRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        alvVM.initSrl(binding.articleFragmentSrl);
         binding.articleFragmentSrl.setOnRefreshListener(() -> alvVM.refresh(binding.articleFragmentSrl));
         return binding.getRoot();
     }

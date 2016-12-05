@@ -46,6 +46,10 @@ public class ArticleListViewVM implements ViewModel {
         fetchData(null);
     }
 
+    public void initSrl(SwipeRefreshLayout srl) {
+        srl.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent);
+    }
+
     public void fetchData(SwipeRefreshLayout srl) {
         RetrofitUtil.article("20", "-1", ArticlesFragment.cid_arr[pos], mArticlePages[pos].getLastId(), mArticlePages[pos].getPageNo() + "",
                 mArticlePages[pos].getFirstTime(), mArticlePages[pos].getFirstId(),

@@ -93,13 +93,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            mMainVM.setBarTitle(getResources().getString(R.string.home));
         } else if (id == R.id.nav_site) {
-
+            mMainVM.setBarTitle(getResources().getString(R.string.site));
         } else if (id == R.id.nav_topic) {
-
+            mMainVM.setBarTitle(getResources().getString(R.string.topic));
         } else if (id == R.id.nav_weekly) {
-
+            mMainVM.setBarTitle(getResources().getString(R.string.weekly));
+        } else if (id == R.id.nav_mine) {
+            mMainVM.setBarTitle(getResources().getString(R.string.mine));
         } else if (id == R.id.nav_mode) {
 
         } else if (id == R.id.nav_offline_download) {
