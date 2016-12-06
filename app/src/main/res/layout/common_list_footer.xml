@@ -3,8 +3,8 @@
     <data>
         <import type="android.view.View"/>
         <variable
-            name="tips"
-            type="com.ch.wchhuangya.dzah.tuicool.model.CommonListLoadMore"/>
+            name="footer"
+            type="com.ch.wchhuangya.dzah.tuicool.model.CommonListFooter"/>
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,18 +18,18 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:visibility="@{tips.metaballShow ? View.VISIBLE : View.GONE}"
+            android:visibility="@{footer.metaballShow ? View.VISIBLE : View.GONE}"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{tips.tips}"
+            android:text="@{footer.tips}"
             android:textColor="#ccc"
             android:layout_centerInParent="true"
             android:gravity="center"
             android:textSize="16sp"
-            android:visibility="@{tips.tipsShow ? View.VISIBLE : View.GONE}"
+            android:visibility="@{footer.tipsShow ? View.VISIBLE : View.GONE}"
             />
 
     </RelativeLayout>

@@ -3,33 +3,21 @@ package com.ch.wchhuangya.dzah.tuicool.util;
 import android.text.TextUtils;
 
 import com.ch.wchhuangya.dzah.tuicool.interfaces.ArticleService;
+import com.ch.wchhuangya.dzah.tuicool.interfaces.ResponseComplete;
 import com.ch.wchhuangya.dzah.tuicool.interfaces.ResponseError;
 import com.ch.wchhuangya.dzah.tuicool.interfaces.ResponseSuccess;
 import com.ch.wchhuangya.dzah.tuicool.model.Article;
+import com.ch.wchhuangya.lib.retrofit.RetrofitUtil;
+import com.ch.wchhuangya.lib.rxandroid.RxandroidUtil;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by wchya on 2016-11-17 20:32
  */
 
-public class RetrofitUtil implements res {
-
-    public static final String BASE_URL = "http://api.tuicool.com/";
-    private static Retrofit.Builder builder = new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
-
-    public static <T> T createService(Class<T> service) {
-        return builder.client(new OkHttpClient.Builder().build()).build().create(service);
-    }
+public class ArticleUtils {
 
     /**
      * 获取文章列表
@@ -44,7 +32,7 @@ public class RetrofitUtil implements res {
      * @param error 请求失败调用的接口
      */
     public static void article (String size, String lang, String cid, String lastId, String pageNo,
-                                long firstTime, String firstId, ResponseSuccess<Article> success, ResponseError error) {
+                                long firstTime, String firstId, ResponseSuccess<Article> success, ResponseError error, ResponseComplete complete) {
         Map<String, String> queryMap = new HashMap<>();
         queryMap.put("size", size);
         queryMap.put("lang", lang);
@@ -59,8 +47,8 @@ public class RetrofitUtil implements res {
         if (!TextUtils.isEmpty(firstId))
             queryMap.put("first_id", firstId);
 
-        createService(ArticleService.class).article(queryMap)
-                .compose(RxAndroidUtil.applySchedulers())
-                .subscribe(success::onSuccess, error::onError);
+        RetrofitUtil.generator(ArticleService.class).article(queryMap)
+                .compose(RxandroidUtil.applySchedulers())
+                .subscribe(success::onSuccess, error::onError, complete::onComplete);
     }
 }

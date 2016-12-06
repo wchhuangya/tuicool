@@ -16,15 +16,15 @@
 //
 //import com.ch.wchhuangya.dzah.tuicool.R;
 //import com.ch.wchhuangya.dzah.tuicool.activity.Main3Activity;
-//import com.ch.wchhuangya.dzah.tuicool.adapter.ArticleAdapter;
+//import com.ch.wchhuangya.dzah.tuicool.adapter.ArticleABDAdapter;
 //import com.ch.wchhuangya.dzah.tuicool.adapter.EndlessRecyclerViewScrollListener;
 //import com.ch.wchhuangya.dzah.tuicool.databinding.CommonRecyclerviewBinding;
 //import com.ch.wchhuangya.dzah.tuicool.model.Article;
 //import com.ch.wchhuangya.dzah.tuicool.model.CommonList;
-//import com.ch.wchhuangya.dzah.tuicool.model.CommonListLoadMore;
+//import com.ch.wchhuangya.dzah.tuicool.model.CommonListFooter;
 //import com.ch.wchhuangya.dzah.tuicool.util.Constant;
 //import com.ch.wchhuangya.dzah.tuicool.util.CroutonUtil;
-//import com.ch.wchhuangya.dzah.tuicool.util.RetrofitUtil;
+//import com.ch.wchhuangya.dzah.tuicool.util.ArticleUtils;
 //import com.ch.wchhuangya.dzah.tuicool.util.TimeUtil;
 //import com.ogaclejapan.smarttablayout.SmartTabLayout;
 //
@@ -83,7 +83,7 @@
 //    public static class CreateArticleFragment extends Fragment {
 //
 //        private CommonList mCommonList;
-//        private CommonListLoadMore mCommonListLoadMore;
+//        private CommonListFooter mCommonListLoadMore;
 //
 //        @Nullable
 //        @Override
@@ -98,8 +98,8 @@
 //
 //            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 //            recyclerview.setLayoutManager(layoutManager);
-//            mCommonListLoadMore = new CommonListLoadMore();
-//            ArticleAdapter adapter = new ArticleAdapter(getContext(), mCommonListLoadMore);
+//            mCommonListLoadMore = new CommonListFooter();
+//            ArticleABDAdapter adapter = new ArticleABDAdapter(getContext(), mCommonListLoadMore);
 //            recyclerview.setAdapter(adapter);
 //            refreshLayout.setEnabled(false);
 //            int pos = getArguments().getInt("pos", 0);
@@ -132,22 +132,22 @@
 //            return binding.getRoot();
 //        }
 //
-//        private void loadMore(SwipeRefreshLayout refreshLayout, ArticleAdapter adapter, String cid, RecyclerView recyclerView, int pos) {
+//        private void loadMore(SwipeRefreshLayout refreshLayout, ArticleABDAdapter adapter, String cid, RecyclerView recyclerView, int pos) {
 //            Observable.timer(100, TimeUnit.MILLISECONDS).subscribe(aLong -> {
 //                mCommonListLoadMore.metaballShow.set(true);
 //                mCommonListLoadMore.tipsShow.set(false);
 //            });
 //            Main3Activity.articlePages[pos].setPageNo(Main3Activity.articlePages[pos].getPageNo() + 1);
-//            RetrofitUtil.article(ARTICLE_PAGE_NUMS, ARTICLE_LANG, cid, Main3Activity.articlePages[pos].getLastId(), Main3Activity.articlePages[pos].getPageNo() + "", -1, "", article -> {
+//            ArticleUtils.article(ARTICLE_PAGE_NUMS, ARTICLE_LANG, cid, Main3Activity.articlePages[pos].getLastId(), Main3Activity.articlePages[pos].getPageNo() + "", -1, "", article -> {
 //                loadData(refreshLayout, adapter, article, recyclerView, false, false, pos);
 //            }, throwable -> {
 //                Log.e(Constant.TAG_LOG, "loadMore: 加载更多操作失败——", throwable);
 //            });
 //        }
 //
-//        private void refresh(SwipeRefreshLayout refreshLayout, ArticleAdapter adapter, String cid, RecyclerView recyclerView,
+//        private void refresh(SwipeRefreshLayout refreshLayout, ArticleABDAdapter adapter, String cid, RecyclerView recyclerView,
 //                             boolean refresh, boolean first, int pos) {
-//            RetrofitUtil.article(ARTICLE_PAGE_NUMS, ARTICLE_LANG, cid, "", "", Main3Activity.articlePages[pos].getFirstTime(), Main3Activity.articlePages[pos].getFirstId(),
+//            ArticleUtils.article(ARTICLE_PAGE_NUMS, ARTICLE_LANG, cid, "", "", Main3Activity.articlePages[pos].getFirstTime(), Main3Activity.articlePages[pos].getFirstId(),
 //                    article -> {
 //                        loadData(refreshLayout, adapter, article, recyclerView, refresh, first, pos);
 //                    }, throwable -> {
@@ -156,7 +156,7 @@
 //            );
 //        }
 //
-//        private void loadData(SwipeRefreshLayout refreshLayout, ArticleAdapter adapter, Article article, RecyclerView recyclerView,
+//        private void loadData(SwipeRefreshLayout refreshLayout, ArticleABDAdapter adapter, Article article, RecyclerView recyclerView,
 //                              boolean refresh, boolean first, int pos) {
 //            refreshLayout.setEnabled(true);
 //            adapter.setLoadMore(article.isHas_next());

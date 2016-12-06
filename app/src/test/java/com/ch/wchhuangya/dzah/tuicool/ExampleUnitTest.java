@@ -1,6 +1,6 @@
 package com.ch.wchhuangya.dzah.tuicool;
 
-import com.ch.wchhuangya.dzah.tuicool.util.TimeUtil;
+import com.ch.wchhuangya.lib.util.TimeUtil;
 
 import org.junit.Test;
 

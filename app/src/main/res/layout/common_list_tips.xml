@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="tips"
+            type="com.ch.wchhuangya.dzah.tuicool.model.CommonListTips"/>
+    </data>
+
+    <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="center"
+                  android:orientation="vertical"
+                  android:paddingBottom="15dp"
+        >
+
+        <ImageView
+            android:layout_width="105dp"
+            android:layout_height="108dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/result_empty_light"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="@color/list_tips"
+            android:textSize="20sp"
+            android:text="@{tips.tips}"
+            tools:text="网络异常，请刷新重试"
+            />
+
+    </LinearLayout>
+</layout>

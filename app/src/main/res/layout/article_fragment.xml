@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="rv"
-            type="com.ch.wchhuangya.dzah.tuicool.vm.ArticleListViewVM"/>
+            name="list"
+            type="com.ch.wchhuangya.dzah.tuicool.vm.BaseVM"/>
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/article_fragment_srl"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/article_fragment_rv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:itemView="@{rv.itemView}"
-                app:items="@{rv.items}"
-                />
-        </android.support.v4.widget.SwipeRefreshLayout>
+        <include layout="@layout/common_recyclerview"
+            android:id="@+id/include_common_rv"
+            />
 
     </LinearLayout>
 </layout>

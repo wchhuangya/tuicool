@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <import type="android.view.View"/>
+
         <variable
-            name="commonListview"
-            type="com.ch.wchhuangya.dzah.tuicool.model.CommonList"/>
+            name="list"
+            type="com.ch.wchhuangya.dzah.tuicool.vm.BaseVM"/>
     </data>
 
     <FrameLayout
 
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         >
 
         <fr.castorflex.android.circularprogressbar.CircularProgressBar
@@ -21,7 +24,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:indeterminate="true"
-            android:visibility="@{commonListview.pbShow ? View.VISIBLE : View.GONE}"
+            android:visibility="@{list.pbShow ? View.VISIBLE : View.GONE}"
             app:cpb_color="#FFee44"
             app:cpb_colors="@array/my_color"
             app:cpb_max_sweep_angle="300"
@@ -31,7 +34,7 @@
             app:cpb_sweep_speed="1.0"
             />
 
-        <com.ch.wchhuangya.dzah.tuicool.customview.SwipeRefreshView
+        <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/common_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -43,15 +46,13 @@
                 android:layout_height="match_parent"
                 android:listSelector="@android:color/transparent"
                 android:orientation="vertical"
-                android:visibility="@{commonListview.listviewShow ? View.VISIBLE : View.GONE}"
+                android:visibility="@{list.listShow ? View.VISIBLE : View.GONE}"
                 />
-        </com.ch.wchhuangya.dzah.tuicool.customview.SwipeRefreshView>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
-        <ImageView
-            android:id="@+id/common_nodata_iv"
-            android:visibility="@{commonListview.ivShow ? View.VISIBLE : View.GONE}"
+        <FrameLayout
+            android:id="@+id/common_tips_fll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="center"/>
+            android:layout_height="wrap_content"/>
     </FrameLayout>
 </layout>

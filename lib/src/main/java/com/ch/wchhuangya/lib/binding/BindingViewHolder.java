@@ -1,4 +1,4 @@
-package com.ch.wchhuangya.dzah.tuicool.adapter;
+package com.ch.wchhuangya.lib.binding;
 
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +11,11 @@ public class BindingViewHolder extends RecyclerView.ViewHolder {
 
     private ViewDataBinding binding;
 
-    public BindingViewHolder(ViewDataBinding binding) {
+    public BindingViewHolder(ViewDataBinding binding, Object object) {
         super(binding.getRoot());
 
         this.binding = binding;
+        binding.getRoot().setTag(object);
     }
 
     public ViewDataBinding getBinding() {

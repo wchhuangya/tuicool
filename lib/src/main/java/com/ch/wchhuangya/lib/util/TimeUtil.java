@@ -1,4 +1,4 @@
-package com.ch.wchhuangya.dzah.tuicool.util;
+package com.ch.wchhuangya.lib.util;
 
 import android.text.TextUtils;
 

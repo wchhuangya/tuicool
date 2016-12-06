@@ -7,6 +7,7 @@ import android.databinding.ObservableBoolean;
  */
 
 public class CommonList {
+    // body
     public ObservableBoolean pbShow = new ObservableBoolean(true);
     public ObservableBoolean listviewShow = new ObservableBoolean(false);
     public ObservableBoolean ivShow = new ObservableBoolean(false);

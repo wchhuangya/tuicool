@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         >
 
     <data>
         <variable
-            name="item"
-            type="com.ch.wchhuangya.dzah.tuicool.vm.ArticleListViewItemVM"/>
+            name="article"
+            type="com.ch.wchhuangya.dzah.tuicool.model.ArticleObservable"/>
     </data>
 
     <LinearLayout
@@ -47,7 +48,8 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginLeft="5dp"
                         android:scaleType="fitXY"
-                        app:img="@{item.img}"
+                        app:squareImg="@{article.img}"
+                        tools:background="@mipmap/pic_default"
                         />
 
                     <TextView
@@ -56,9 +58,10 @@
                         android:layout_height="wrap_content"
                         android:layout_toLeftOf="@+id/article_item_iv"
                         android:lines="2"
-                        android:text="@{item.title}"
+                        android:text="@{article.title}"
                         android:textColor="#333"
                         android:textSize="16sp"
+                        tools:text="因为《你的名字》，我想到了一个 app"
                         />
 
                     <TextView
@@ -66,10 +69,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/article_item_title_tv"
-                        android:layout_marginTop="5dp"
-                        android:text="@{item.feedTitle}"
+                        android:layout_marginTop="10dp"
+                        android:text="@{article.feedTitle}"
                         android:textColor="#999"
                         android:textSize="11sp"
+                        tools:text="爱范儿"
                         />
 
                     <TextView
@@ -78,11 +82,12 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/article_item_title_tv"
                         android:layout_marginLeft="8dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_toRightOf="@+id/article_item_feed_tv"
-                        android:text="@{item.time}"
+                        android:text="@{article.time}"
                         android:textColor="#999"
                         android:textSize="11sp"
+                        tools:text="12-05 18:54"
                         />
 
                 </RelativeLayout>

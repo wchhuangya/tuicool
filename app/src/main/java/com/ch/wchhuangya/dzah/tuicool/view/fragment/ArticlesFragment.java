@@ -27,10 +27,15 @@ public class ArticlesFragment extends Fragment {
         ArticlesFragmentBinding binding = DataBindingUtil.inflate(inflater, R.layout.articles_fragment, container, false);
         binding.setMain(new MainVM(getContext()));
 
+//        binding.articleViewpager.setOffscreenPageLimit(1);
         binding.articleViewpager.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                return ArticleFragment.createFragment(position);
+                ArticleFragment articleFragment = new ArticleFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("pos", position);
+                articleFragment.setArguments(bundle);
+                return articleFragment;
             }
 
             @Override

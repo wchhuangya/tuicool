@@ -11,16 +11,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitUtil {
 
-    public static String BASE_URL = "http://api.dagoogle.cn/";
+    public static String BASE_URL = "http://api.tuicool.com/";
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
 
     /** 根据接口生成相应的客户端 */
     public static <T> T generator(Class<T> service) {
-        Retrofit retrofit = builder.client(OkHttpUtil.httpClient).build();
+        Retrofit retrofit = builder.baseUrl(BASE_URL).client(OkHttpUtil.httpClient).build();
         return retrofit.create(service);
     }
 }
